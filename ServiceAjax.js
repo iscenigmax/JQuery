@@ -10,12 +10,15 @@ Servicio para llamadas Ajax con jquery (soporte para callback)
 
 	//Declaracion del objeto y ejecucion
 	var oAjax = new ServiceAjax(send);
-	oAjax.execute(RevisaValores);
+	oAjax.execute(onSuccess,onError);
 
 	//Lectura de datos
-	function RevisaValores(datos) {
+	function onSuccess(datos) {
 		console.log(datos);
 	}
+    function onError() {
+        console.log('Hubo un error');
+    }
 */
 var GX = GX || {}; //Nameespace
 GX.ServiceAjax = function (opt) {
@@ -94,17 +97,17 @@ GX.ServiceAjax.prototype.set = function (atr, val) {
             console.log("No existe la propiedad: " + atr);
     }
 };
-GX.ServiceAjax.prototype.execute = function (fnn) {
+GX.ServiceAjax.prototype.execute = function (fnn,fnnE) {
     $.ajax({
         global: this.global,
-        timeout: this.get('timeout'),
+        timeout: this.get("timeout"),
         url: this.url,
         type: this.type,
         cache: this.cache,
         async: this.async,
-        contentType: this.get('contenttype'),
-        data: this.get('data'),
-        dataType: this.get('datatype'),
+        contentType: this.get("contenttype"),
+        data: this.get("data"),
+        dataType: this.get("datatype"),
         success: function (data, status) {
             if (typeof fnn === "function") {
                 fnn(data);
@@ -114,17 +117,13 @@ GX.ServiceAjax.prototype.execute = function (fnn) {
             }
         },
         error: function (request, status, error) {
-		if (typeof status !== 'undefined' && status === 'timeout') {
-<<<<<<< HEAD
-			alert('Se ha alcanzado el tiempo de espera. Revisar conexion al servidor.');
-                } 
-=======
-			alert('Se ha alcanzado el tiempo de espera. Revisar conexion a al servidor.');
-                }
->>>>>>> Se agrego un namespace para las funciones
-		else{
-                    alert(status + " : " + error);
-		}
+            if (typeof fnnE === "function") fnnE();
+            if (typeof status !== 'undefined' && status === 'timeout') {
+                alert('Se ha alcanzado el tiempo de espera. Revisar conexion al servidor.');
+            }
+            else {
+                alert(status + " : " + error);
+            }
         }
     });
 };
