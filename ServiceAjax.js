@@ -20,6 +20,15 @@ Servicio para llamadas Ajax con jquery (soporte para callback)
         console.log('Hubo un error');
     }
 */
+Usar defineprotoype para las definiciones
+use sctrict
+hacer un enclusure y psar jquery $
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+aplicar el clojure  de coffe
+(function(){
+
+}())
+
 var GX = GX || {}; //Nameespace
 GX.ServiceAjax = function (opt) {
     this.global = false;
