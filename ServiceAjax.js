@@ -106,6 +106,7 @@ GX.ServiceAjax.prototype.set = function (atr, val) {
             console.log("No existe la propiedad: " + atr);
     }
 };
+//TODO: cambiar a .done and .error
 GX.ServiceAjax.prototype.execute = function (fnn,fnnE) {
     $.ajax({
         global: this.global,
