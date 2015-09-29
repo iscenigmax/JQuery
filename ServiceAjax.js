@@ -137,3 +137,19 @@ GX.ServiceAjax.prototype.execute = function (fnn,fnnE) {
         }
     });
 };
+
+
+ $.ajax('api/models',
+        {
+            'name': 'foo'
+        }
+    ).done(function(data) {
+        alert( "success" );
+        do_dom_manipulation(data)
+    })
+    .fail(function() {
+        alert( "error" );
+    })
+    .always(function() {
+        alert( "complete" );
+    });
