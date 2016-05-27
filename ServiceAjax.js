@@ -1,5 +1,6 @@
 /*
 Servicio para llamadas Ajax con jquery (soporte para callback)
+TODO: Mejorar metodos 'get' y 'set' remover el uso del switch statement (sugerencia: utilizar object.hasOwnProperty)
 
 //Ejemplo:
 	//Variable para construccion
